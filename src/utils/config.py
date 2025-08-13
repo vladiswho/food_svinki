@@ -1,10 +1,12 @@
 from dotenv import dotenv_values
 from dataclasses import dataclass
 
-config = dotenv_values(".env")
+dotenv_config = dotenv_values(".env")
 
 
 @dataclass
 class Config:
-    BOT_TOKEN = config["BOT_TOKEN"]
-    ADMINS = config["ADMINS"]
+    BOT_TOKEN = dotenv_config["BOT_TOKEN"]
+    ADMINS = dotenv_config["ADMINS"]
+
+config = Config()

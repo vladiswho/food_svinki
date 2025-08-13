@@ -1,13 +1,9 @@
 import logging
 import asyncio
 
-from src.utils.config import Config
-from src.application.application import Application
+from src.application.application import app
 
 logging.basicConfig(level=logging.INFO)
-
-conf = Config()
-app = Application(config=conf)
 
 if __name__ == "__main__":
     asyncio.run(app.run())

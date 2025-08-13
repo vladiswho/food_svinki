@@ -18,6 +18,6 @@ async def cmd_start(message: Message):
 
 
 @start_router.message(F.text == RusButtons.BACK)
-async def cmd_start(message: Message):
+async def button_back(message: Message):
     logger.info(f"Back button was pressed by user {message.from_user.username}")
     await message.answer("Возвращаемся назад", reply_markup=start_keyboard())

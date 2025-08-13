@@ -11,3 +11,10 @@ class RusButtons:
     GET_BREAKFAST = "🍳 Завтрак"
     GET_LUNCH = "🍜 Обед"
     GET_DINNER = "🥗 Ужин"
+
+    POST_BREAKFAST = "🖌 Завтрак"
+    POST_LUNCH = "✒️ Обед"
+    POST_DINNER = "🖍 Ужин"
+
+    CONFIRM = "✅ Подтвердить"
+    CANCEL = "❌ Отменить"

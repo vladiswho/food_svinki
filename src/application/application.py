@@ -1,28 +1,29 @@
 import logging
 import os
-from aiogram import Bot, Dispatcher
+from aiogram import Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
-from src.handlers import start_router, get_recipes_router
-from src.utils.config import Config
+from src.handlers import start_router, get_recipes_router, post_recipes_router
+from src.utils.config import Config, config
 from src.utils.utils import get_files
 from src.utils.recipes_cache import recipes_cache
+from src.application.bot import bot
 
 logger = logging.getLogger(__name__)
 
 class Application:
-    def __init__(self, config: Config):
-        self.config = config
+    def __init__(self, conf: Config):
+        self.config = conf
         self.dp: Dispatcher = Dispatcher(storage=MemoryStorage())
-        self.admins = [int(admin_id) for admin_id in self.config.ADMINS.split(",")]
+        self.bot = bot.get_bot()
 
     async def run(self):
         try:
             logger.info(f"Bot starting")
-            bot = Bot(token=self.config.BOT_TOKEN)
 
             self.dp.include_router(start_router)
             self.dp.include_router(get_recipes_router)
+            self.dp.include_router(post_recipes_router)
 
             os.makedirs("./recipes/breakfast", exist_ok=True)
             os.makedirs("./recipes/lunch", exist_ok=True)
@@ -32,10 +33,8 @@ class Application:
             recipes_cache.LUNCH = get_files("./recipes/lunch")
             recipes_cache.DINNER = get_files("./recipes/dinner")
 
-            await self.dp.start_polling(bot)
+            await self.dp.start_polling(self.bot)
         finally:
             logger.info(f"Bot stopping")
 
-    def get_config(self):
-        return self.config
-
+app = Application(conf=config)
