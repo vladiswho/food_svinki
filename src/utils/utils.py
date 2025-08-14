@@ -22,7 +22,7 @@ def check_if_admin(user_id: int) -> bool:
     return user_id in admins
 
 def save_file(meal_type: str, recipe_text: str = None, photo_file_id: str = None, photo_bytes: bytes = None):
-    save_dir = f"./recipes/{meal_type}"
+    save_dir = f"/data/recipes/{meal_type}"
     filename = ""
     if recipe_text:
         filename = f"recipe_{int(os.times().elapsed*1000)}.txt"

@@ -33,10 +33,10 @@ async def get_breakfast(message: Message):
     random_recipe = random.choice(cached_recipes)
     try:
         if ".txt" in random_recipe:
-            file = read_file(f"./recipes/breakfast/{random_recipe}")
+            file = read_file(f"/data/recipes/breakfast/{random_recipe}")
             await message.answer(file, reply_markup=diet_keyboard())
         else:
-            photo_file = FSInputFile(path=f"./recipes/breakfast/{random_recipe}")
+            photo_file = FSInputFile(path=f"/data/recipes/breakfast/{random_recipe}")
             await message.answer_photo(photo_file, reply_markup=diet_keyboard())
         logger.info("Success getting breakfast")
     except BaseException as e:
@@ -57,10 +57,10 @@ async def get_lunch(message: Message):
     random_recipe = random.choice(cached_recipes)
     try:
         if ".txt" in random_recipe:
-            file = read_file(f"./recipes/lunch/{random_recipe}")
+            file = read_file(f"/data/recipes/lunch/{random_recipe}")
             await message.answer(file, reply_markup=diet_keyboard())
         else:
-            photo_file = FSInputFile(path=f"./recipes/lunch/{random_recipe}")
+            photo_file = FSInputFile(path=f"/data/recipes/lunch/{random_recipe}")
             await message.answer_photo(photo_file, reply_markup=diet_keyboard())
         logger.info("Success getting lunch")
     except BaseException as e:
@@ -81,10 +81,10 @@ async def get_dinner(message: Message):
     random_recipe = random.choice(cached_recipes)
     try:
         if ".txt" in random_recipe:
-            file = read_file(f"./recipes/dinner/{random_recipe}")
+            file = read_file(f"/data/recipes/dinner/{random_recipe}")
             await message.answer(file, reply_markup=diet_keyboard())
         else:
-            photo_file = FSInputFile(path=f"./recipes/dinner/{random_recipe}")
+            photo_file = FSInputFile(path=f"/data/recipes/dinner/{random_recipe}")
             await message.answer_photo(photo_file, reply_markup=diet_keyboard())
         logger.info("Success getting dinner")
     except BaseException as e:

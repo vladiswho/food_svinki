@@ -25,13 +25,13 @@ class Application:
             self.dp.include_router(get_recipes_router)
             self.dp.include_router(post_recipes_router)
 
-            os.makedirs("./recipes/breakfast", exist_ok=True)
-            os.makedirs("./recipes/lunch", exist_ok=True)
-            os.makedirs("./recipes/dinner", exist_ok=True)
+            os.makedirs("/data/recipes/breakfast", exist_ok=True)
+            os.makedirs("/data/recipes/lunch", exist_ok=True)
+            os.makedirs("/data/recipes/dinner", exist_ok=True)
 
-            recipes_cache.BREAKFAST = get_files("./recipes/breakfast")
-            recipes_cache.LUNCH = get_files("./recipes/lunch")
-            recipes_cache.DINNER = get_files("./recipes/dinner")
+            recipes_cache.BREAKFAST = get_files("/data/recipes/breakfast")
+            recipes_cache.LUNCH = get_files("/data/recipes/lunch")
+            recipes_cache.DINNER = get_files("/data/recipes/dinner")
 
             await self.dp.start_polling(self.bot)
         finally:
